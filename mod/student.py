@@ -91,7 +91,6 @@ class Student:
         def rules():
             print("## Write in input you want to edit it, the input you don't want to edit that press ENTER ## \n")
         for stu in students:
-            print(stu['score'][0]['score'])
             if stu['name'].lower() != name.lower():
                 print("Student Not Found ^^")
                 return
@@ -143,6 +142,23 @@ class Student:
             stu['presentge_score']=Score.percentage_score(will_edit[0],will_edit[1],will_edit[2],will_edit[3],will_edit[4])
             write_txt('data\studetnts.json',students)
     def delete_student():
-        print('Add Student')
+        try:
+            python_txt=conver_fom_json('data/studetnts.json')
+            students=python_txt
+            name=input("Enter Student Name: \n").strip()
+            for stu in range(len(students)):
+                if len(students) == 0:
+                    print("No students exits")
+                    return
+                if students[stu]['name'].lower() != name.lower():
+                    print("Student Not Found ^^")
+                    return
+                del students[stu]
+                print(students)
+                if len(students) == 0:
+                    return
+                write_txt('data\studetnts.json',students)
+        except Exception as e:
+            raise e
     def list_students():
         print('Add Student')
