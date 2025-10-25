@@ -27,13 +27,13 @@ class Student:
             if name == '':
                 print('valid student name ^^')
                 return
-            for stu in students:
-                print(stu)
-                if stu['name'].lower()==name.lower():
-                    print('exit student ^^')
-                    return
-                print('fds')
-            age=int(input('Enter Student Age: \n')).strip()
+            # for stu in students:
+            #     print(stu)
+            #     if stu['name'].lower()==name.lower():
+            #         print('exit student ^^')
+            #         return
+            #     print('fds')
+            age=int(input('Enter Student Age: \n'))
             if age>27:
                 print("valid student age ^^")
                 return
@@ -50,17 +50,17 @@ class Student:
                 print("valid gender")
                 return
             print("Add sutdent Score: \n")
-            Arabic=int(input('Enter Arabic Score: \n').strip())
-            Math=int(input('Enter Math Score: \n').strip())
-            English=int(input('Enter English Score: \n').strip())
-            sience=int(input('Enter sience Score: \n').strip())
-            socail=int(input('Enter socail Studies Score: \n').strip())
+            Arabic=int(input('Enter Arabic Score: \n'))
+            Math=int(input('Enter Math Score: \n'))
+            English=int(input('Enter English Score: \n'))
+            sience=int(input('Enter sience Score: \n'))
+            socail=int(input('Enter socail Studies Score: \n'))
 
-            Arabic_appreciation=check_study_score(Arabic,'subject')
-            Math_appreciation=check_study_score(Math,'subject')
-            English_appreciation=check_study_score(English,'subject')
-            sience_appreciation=check_study_score(sience,'subject')
-            socail_appreciation=check_study_score(socail,'subject')
+            Arabic_appreciation=check_study_score(Arabic)
+            Math_appreciation=check_study_score(Math)
+            English_appreciation=check_study_score(English)
+            sience_appreciation=check_study_score(sience)
+            socail_appreciation=check_study_score(socail)
             score=[]
             arabic_score=Score('arabic',Arabic,Arabic_appreciation)
             score.append(arabic_score.__dict__)
@@ -161,4 +161,12 @@ class Student:
         except Exception as e:
             raise e
     def list_students():
-        print('Add Student')
+        python_txt=conver_fom_json('data/studetnts.json')
+        students=python_txt
+        for stu in students:
+            for stu_num in range(len(students)):
+                import prettytable
+                from func.convert_to_json import convert_to_json
+                students_json=convert_to_json(students)
+                print(
+                prettytable.from_mediawiki(students))
